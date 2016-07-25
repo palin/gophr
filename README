@@ -1,0 +1,98 @@
+Gophr gem is a wrapper for GOPHR Commercial API (https://developers-test.gophr.com/docs)
+
+To install:
+
+1. Add to your Gemfile:
+  gem 'gophr'
+
+2. Run:
+  bundle install
+
+Usage:
+  After creating an instance you have to use `call` method, to call GOPHR api and get a response. If that fails, you will get all information that GOPHR api delivers.
+
+  1. Creating a job
+
+  job = Gophr::Jobs::Create.new(YOUR_API_KEY, options_hash)
+  job.create
+
+  Example:
+    job = Gophr::Jobs::Create.new(YOUR_API_KEY,
+    {
+      pickup_address1: 'My Super Pickup Street 123'
+      pickup_country_code: 'GB'
+      pickup_email: 'test-email@testemails.com'
+      delivery_address1: 'My Delivery Street 098'
+      is_food: 1
+      earliest_pickup_time: '2016-01-31T09:15:00+1:00'
+      delivery_deadline: 2016-01-31T13:45:00+1:00
+      callback_url: 'http://my.application.com/gophr/callback'
+    })
+    job.call
+
+  2. Update a job
+
+  job = Gophr::Jobs::Update.new(YOUR_API_KEY, options_hash)
+  job.update
+
+  Example:
+    job = Gophr::Jobs::Update.new(YOUR_API_KEY,
+    {
+      job_id: ID_OF_THE_JOB_YOU_UPDATE
+      pickup_address1: 'Update The Street 123'
+    })
+    job.call
+
+  3. Confirm a job
+
+  job = Gophr::Jobs::Confirm.new(YOUR_API_KEY, options_hash)
+  job.confirm
+
+  Example:
+    job = Gophr::Jobs::Confirm.new(YOUR_API_KEY,
+    {
+      job_id: ID_OF_THE_JOB_YOU_UPDATE
+    })
+    job.call
+
+  4. Get a job's cancelation cost
+
+  job = Gophr::Jobs::CancelationCost.new(YOUR_API_KEY, options_hash)
+  job.call
+
+  Example:
+    job = Gophr::Jobs::CancelationCost.new(YOUR_API_KEY,
+    {
+      job_id: ID_OF_THE_JOB_YOU_UPDATE
+    })
+    job.call
+
+  5. Cancel a job
+
+  job = Gophr::Jobs::Cancel.new(YOUR_API_KEY, options_hash)
+  job.call
+
+  Example:
+    job = Gophr::Jobs::Cancel.new(YOUR_API_KEY,
+    {
+      job_id: ID_OF_THE_JOB_YOU_UPDATE
+    })
+    job.call
+
+  6. Simulate a callback
+
+    Warning!
+    Your callback_url has to be publicly visible over Internet, it can't be a localhost url.
+
+    job = Gophr::Jobs::SimulateCallback.new(YOUR_API_KEY, callback_url, options_hash)
+    job.call
+
+  Example:
+    job = Gophr::Jobs::SimulateCallback.new(YOUR_API_KEY, 'http://my.application.com/gophr/callback',
+    {
+      job_id: ID_OF_THE_JOB_FOR_THE_CALLBACK,
+      status: 'ACCEPTED_BY_COURIER',
+      progress: 45
+    })
+    job.call
+
