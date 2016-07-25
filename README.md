@@ -7,9 +7,11 @@ A wrapper for GOPHR Commercial API (https://developers-test.gophr.com/docs)
   You can do it in a separate initializer file or just before any Gophr code. You probably want to use sandbox url and key in your development environment. Don't store your production api key in the source code. Save it in your server's environment variable.
 
 ```ruby
-Gophr.api_url = //HERE_GOES_GOPHR_API_URL
-Gophr.api_key = //HERE_GOES_YOUR_OWN_GOPHR_API_KEY
+Gophr.api_url = HERE_GOES_GOPHR_API_URL
+Gophr.api_key = HERE_GOES_YOUR_OWN_GOPHR_API_KEY
 ```
+
+---
 
 ### Create a job - `create`
     
@@ -36,8 +38,9 @@ job = Gophr::Job.new(
 job.create
 ```
   
-Last line `job.create` will call GOPHR api and if everything's fine, you will get a `Gophr::Job` instance with attributes and `job_id` in return.
+Last line `job.create` will call GOPHR API and if everything's fine, you will get a `Gophr::Job` instance with attributes and `job_id` in return.
 
+---
 
 ### Update a job - `update({...})`
 
@@ -70,6 +73,8 @@ Usage example:
 
 `job.update(...)` will call GOPHR API and update a job by its `job_id`. If no error occurs, you will get an updated `Gophr::Job` instance.
 
+---
+
 ### Confirm a job - `confirm!`
 
 After creating a job you have to confirm it to make it 'real'. 
@@ -88,7 +93,9 @@ OR
   job.confirm!
 ```
 
-In response you will get a `Gophr::Job` instance with some new attributes returned by GOPHR api.
+In response you will get a `Gophr::Job` instance with some new attributes returned by GOPHR API.
+
+---
 
 ### Get a job's cancelation cost - `cancelation_cost`
 
@@ -102,6 +109,8 @@ job.cancelation_cost
 
 The `job.cancelation_cost` will call GOPHR API and return a value.
 
+---
+
 ### Cancel a job - `cancel!`
   
 After creating or confirming a job you can cancel it.
@@ -113,6 +122,8 @@ job.cancel!
 ```
 
 The `job.cancel!` will call GOPHR API and return boolean `true` if cancelation succeeded.
+
+---
 
 ### Simulate a callback - `simulate_callback`
 
@@ -133,4 +144,4 @@ job.simulate_callback('http://my.application.com/gophr/callback',
 )
 ```
 
-In return you will get a hash with parameters and your api_key to validate authenticity.
+In return you will get a hash with parameters and your own API key to validate authenticity.
