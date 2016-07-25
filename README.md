@@ -57,7 +57,7 @@ You don't have to call `job.create`. This is only if the job doesn't exist on GO
 OR
 
 ```ruby
-  job = Gophr::Job.new({...}, job_id)
+  job = Gophr::Job.new({}, job_id)
   job.update(hash_of_properties_you_want_to_update)
 ```
 
@@ -89,7 +89,7 @@ After creating a job you have to confirm it to make it 'real'.
 OR
 
 ```ruby
-  job = Gophr::Job.new(job_id)
+  job = Gophr::Job.new({}, job_id)
   job.confirm!
 ```
 

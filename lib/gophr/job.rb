@@ -64,6 +64,8 @@ module Gophr
       Jobs::SimulateCallback.new(callback_url, options).call
     end
 
+    private
+
     def assign_attributes(new_attributes = {})
       new_attributes.each do |property, value|
         self.send("#{property}=", value)
