@@ -1,17 +1,20 @@
 module Gophr
   module Jobs
     class SimulateCallback < Base
-      attr_accessor :callback_url, :options
+      def call
+        response = HTTParty.post(url, headers: headers, body: body)
 
-      def initialize(callback_url, options = {})
-        @callback_url = callback_url
-        @options = options
+        if response.code == 200
+          response.parsed_response
+        else
+          Gophr::HTTPError.new(response)
+        end
       end
 
       protected
 
       def url
-        callback_url
+        "#{api_url}/simulate-callback"
       end
     end
   end

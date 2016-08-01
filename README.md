@@ -1,6 +1,6 @@
 # GOPHR
 
-A wrapper for GOPHR Commercial API (https://developers-test.gophr.com/docs)
+A wrapper for GOPHR Commercial API (https://developers.gophr.com/)
 
 ### Set API url and key
  
@@ -127,18 +127,18 @@ The `job.cancel!` will call GOPHR API and return boolean `true` if cancelation s
 
 ### Simulate a callback - `simulate_callback`
 
-After confirming a job you can simulate a callback to check if your code works properly. Your `callback_url` has to be publicly visible over Internet, it can't be a localhost url because it goes through GOPHR API.
+After confirming a job you can simulate a callback to check if your code works properly (you have to pass `callback_url` in job's attributes). Your `callback_url` has to be publicly visible over Internet, it can't be a localhost url because it goes through GOPHR API and it's called from there.
 
 ```ruby
 job = Gophr::Job.new(...)
 ...
-job.simulate_callback(callback_url, options)
+job.simulate_callback
 ```
 
 Usage example:
 ```ruby
 job = Gophr::Job.new(...)
-job.simulate_callback('http://my.application.com/gophr/callback', 
+job.simulate_callback( 
   status: 'ACCEPTED_BY_COURIER', 
   progress: 45
 )

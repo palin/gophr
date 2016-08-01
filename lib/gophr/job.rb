@@ -60,16 +60,8 @@ module Gophr
       end
     end
 
-    def simulate_callback(callback_url, options = {})
-      Jobs::SimulateCallback.new(callback_url, options).call
-    end
-
-    private
-
-    def assign_attributes(new_attributes = {})
-      new_attributes.each do |property, value|
-        self.send("#{property}=", value)
-      end
+    def simulate_callback
+      Jobs::SimulateCallback.new(job_id: job_id).call
     end
 
     [
@@ -81,10 +73,18 @@ module Gophr
       :is_not_rotatable, :item_title, :size_x, :size_y, :size_z, :weight, :vehicle_type, :earliest_pickup_time,
       :pickup_deadline, :earliest_delivery_time, :delivery_deadline, :job_priority, :order_value, :insurance_required,
       :callback_url, :private_job_url, :distance, :pickup_eta, :delivery_eta, :price_gross, :price_net,
-      :public_tracker_url
+      :public_tracker_url, :progress, :status, :finished, :courier_name, :cancelation_reason
     ].each do |property|
       define_method(property) { attributes[property] }
       define_method("#{property}=") { |value| attributes[property] = value }
+    end
+
+    private
+
+    def assign_attributes(new_attributes = {})
+      new_attributes.each do |property, value|
+        self.send("#{property}=", value)
+      end
     end
   end
 end
