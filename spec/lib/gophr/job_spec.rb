@@ -209,7 +209,7 @@ describe Gophr::Job do
     end
   end
 
-  describe '#simulate_callback!' do
+  describe '#simulate_callback' do
     let(:attributes) { {} }
     let(:job) { described_class.new(attributes) }
 
@@ -221,7 +221,7 @@ describe Gophr::Job do
       let(:simulate_callback) { double(code: 200, parsed_response: { 'success' => true, 'data' => {} }) }
 
       it 'is returns a hash' do
-        expect(job.simulate_callback).to eq({})
+        expect(job.simulate_callback).to eq({ 'success' => true, 'data' => {} })
       end
     end
 
