@@ -2,6 +2,20 @@
 
 A wrapper for GOPHR Commercial API (https://developers.gophr.com/)
 
+### Installation
+
+Add to your Gemfile
+```ruby
+gem 'gophr'
+```
+
+Run 
+```
+bundle install
+```
+
+---
+
 ### Set API url and key
  
   You can do it in a separate initializer file or just before any Gophr code. You probably want to use sandbox url and key in your development environment. Don't store your production api key in the source code. Save it in your server's environment variable.
