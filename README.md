@@ -46,7 +46,7 @@ job = Gophr::Job.new(
   delivery_address1: 'My Delivery Street 098',
   is_food: 1,
   earliest_pickup_time: '2016-01-31T09:15:00+1:00',
-  delivery_deadline: 2016-01-31T13:45:00+1:00,
+  delivery_deadline: '2016-01-31T13:45:00+1:00',
   callback_url: 'http://my.application.com/gophr/callback'
 )
 job.create
