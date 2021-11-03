@@ -65,6 +65,7 @@ module Gophr
     end
 
     [
+      :min_realistic_time, :print_label_url, # new fields
       :external_id, :reference_number, :pickup_company_name, :pickup_address1, :pickup_address2, :pickup_city,
       :pickup_postcode, :pickup_country_code, :pickup_tips_how_to_find, :pickup_person_name, :pickup_email,
       :pickup_mobile_number, :pickup_phone_number, :delivery_company_name, :delivery_address1, :delivery_address2,
