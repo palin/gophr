@@ -18,6 +18,17 @@ module Gophr
       end
     end
 
+    def create_and_confirm
+      response = Jobs::CreateAndConfirm.new(attributes).call
+
+      if response.is_a?(Hash)
+        assign_attributes(response['data'])
+        self
+      else
+        response
+      end
+    end
+
     def create
       response = Jobs::Create.new(attributes).call
 
