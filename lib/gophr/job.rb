@@ -86,6 +86,17 @@ module Gophr
       Jobs::SimulateCallback.new(job_id: job_id).call
     end
 
+    def progress_job
+      response = Jobs::ProgressJob.new(job_id: job_id).call
+
+      if response.is_a?(Hash)
+        assign_attributes(response['data'])
+        self
+      else
+        response
+      end
+    end
+
     [
       :min_realistic_time, :print_label_url, :leg_type, :date_checked_in_1, :date_checked_in_2, :date_picked_up, :date_delivered, :date_finished, :courier_notes, :final_receiver_name,
       :cancellation_reason, :refused_items, :proof_of_delivery, # new fields
